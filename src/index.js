@@ -1,4 +1,4 @@
-class ltJs {
+class kyyUtils {
   isMobile() {
     return /Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent);
   }
@@ -164,4 +164,4 @@ class ltJs {
   }
 }
 
-export default new ltJs();
+export default new kyyUtils();
