@@ -1,0 +1,30 @@
+{
+  "name": "@kyy/fe-utils",
+  "version": "1.0.0",
+  "description": "前端通用工具函数",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaoyaya/fe-utils.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kaoyaya/fe-utils/issues"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.4.3",
+    "@babel/core": "7.4.3",
+    "@babel/preset-env": "7.4.3",
+    "babel-loader": "8.0.5",
+    "uglifyjs-webpack-plugin": "2.1.2",
+    "webpack": "4.30.0",
+    "webpack-cli": "3.3.0"
+  },
+  "homepage": "https://github.com/kaoyaya/fe-utils#readme",
+  "dependencies": {}
+}
