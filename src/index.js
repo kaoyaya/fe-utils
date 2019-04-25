@@ -23,6 +23,10 @@ class kyyUtils {
     return this.browserInfo('weixin');
   }
 
+  isWechat() {
+    return this.browserInfo('weixin');
+  }
+
   isAndroid() {
     return this.deviceInfo('android');
   }
