@@ -14,9 +14,15 @@ class kyyUtils {
       return userAgent.indexOf('ipad') !== -1;
     case 'weixin':
       return userAgent.indexOf('micromessenger') !== -1;
-    default:
+    case 'qq':
+      return userAgent.match(/QQ/i) == "qq";
+      default:
       return userAgent;
     }
+  }
+
+  isQQ(){
+    return this.browserInfo('qq')
   }
 
   isWeChat() {
