@@ -1,6 +1,6 @@
 {
   "name": "@kaoyaya/fe-utils",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "前端通用工具函数",
   "main": "dist/index.js",
   "scripts": {
@@ -26,5 +26,7 @@
     "webpack-cli": "^3.3.11"
   },
   "homepage": "https://github.com/kaoyaya/fe-utils#readme",
-  "dependencies": {}
+  "dependencies": {
+    "user": "0.0.0"
+  }
 }
