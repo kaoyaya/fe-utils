@@ -6,23 +6,23 @@ class kyyUtils {
   browserInfo(type) {
     const userAgent = navigator.userAgent.toLowerCase();
     switch (type) {
-    case 'android':
-      return userAgent.indexOf('android') !== -1;
-    case 'iphone':
-      return userAgent.indexOf('iphone') !== -1;
-    case 'ipad':
-      return userAgent.indexOf('ipad') !== -1;
-    case 'weixin':
-      return userAgent.indexOf('micromessenger') !== -1;
-    case 'qq':
-      return userAgent.match(/QQ/i) == "qq";
+      case 'android':
+        return userAgent.indexOf('android') !== -1;
+      case 'iphone':
+        return userAgent.indexOf('iphone') !== -1;
+      case 'ipad':
+        return userAgent.indexOf('ipad') !== -1;
+      case 'weixin':
+        return userAgent.indexOf('micromessenger') !== -1;
+      case 'qq':
+        return userAgent.match(/QQ/i) == 'qq';
       default:
-      return userAgent;
+        return userAgent;
     }
   }
 
-  isQQ(){
-    return this.browserInfo('qq')
+  isQQ() {
+    return this.browserInfo('qq');
   }
 
   isWeChat() {
@@ -49,12 +49,12 @@ class kyyUtils {
   deviceInfo(type) {
     const u = navigator.userAgent;
     switch (type) {
-    case 'android': {
-      return u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
-    }
-    case 'ios': {
-      return !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-    }
+      case 'android': {
+        return u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+      }
+      case 'ios': {
+        return u.indexOf('Macintosh') > -1 || !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+      }
     }
   }
 
