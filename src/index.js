@@ -2,7 +2,15 @@ class kyyUtils {
   isMobile() {
     return /Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent);
   }
-
+  get CPA_SUBJECT_IDS () {
+    return [
+      9194, 9196, 9197, 9198, 9199, 9200, 9209, 9210, 9211, 9212, 9213, 9214, 9225,
+      9226, 9227, 9228, 9229, 9230, 7653, 9249, 9248, 9247, 9246, 9245, 9244,
+    ]
+  }
+  get ZHONGJI_SUBJECTS_IDS() {
+    return [9187, 9188, 9189, 9206, 9207, 9208, 9233, 9232, 9241, 9242, 9243]
+  }
   browserInfo(type) {
     const userAgent = navigator.userAgent.toLowerCase();
     switch (type) {
