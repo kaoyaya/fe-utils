@@ -1,4 +1,4 @@
-import kyyServices from 'kyy-services'
+import {userEvaluateSrv} from 'kyy-services'
 class kyyUtils {
   constructor() {
     this.userEvaluate = ""
@@ -194,7 +194,7 @@ class kyyUtils {
     return result;
   }
   getUserEvaluate({resourceId,resourceType}) {
-    kyyServices.userEvaluateSrv.getEvaluateContent({
+    userEvaluateSrv.getEvaluateContent({
       resourceId,
       resourceType
     }).then(res => {
