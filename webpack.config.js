@@ -1,4 +1,4 @@
-const webpack = require('webpack')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const path    = require('path')
 module.exports = {
   entry: './src/index.js',
@@ -33,7 +33,19 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin()
-  ]
+  optimization: {
+    minimizer: [
+      // we specify a custom UglifyJsPlugin here to get source maps in production
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        uglifyOptions: {
+          compress: false,
+          ecma: 6,
+          mangle: true
+        },
+        sourceMap: true
+      })
+    ]
+  }
 }

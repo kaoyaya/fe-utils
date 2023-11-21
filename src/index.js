@@ -1,4 +1,8 @@
+import kyyServices from 'kyy-services'
 class kyyUtils {
+  constructor() {
+    this.userEvaluate = ""
+  }
   isMobile() {
     return /Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent);
   }
@@ -8,7 +12,16 @@ class kyyUtils {
       9226, 9227, 9228, 9229, 9230, 7653, 9249, 9248, 9247, 9246, 9245, 9244,
     ]
   }
+  get hasEvaluateEntry() {
+    return this.userEvaluate.knowledgeList && this.userEvaluate.knowledgeList.length
+  }
+  get isEvaluate() {
+    return this.userEvaluate.isEvaluate === 2
+  }
   get ZHONGJI_SUBJECTS_IDS() {
+    return [9187, 9188, 9189, 9206, 9207, 9208, 9233, 9232, 9241, 9242, 9243]
+  }
+  get TAX_SUBJECTS_IDS() {
     return [9187, 9188, 9189, 9206, 9207, 9208, 9233, 9232, 9241, 9242, 9243]
   }
   browserInfo(type) {
@@ -180,6 +193,18 @@ class kyyUtils {
       result = '刚刚';
     return result;
   }
+  getUserEvaluate({resourceId,resourceType}) {
+    kyyServices.userEvaluateSrv.getEvaluateContent({
+      resourceId,
+      resourceType
+    }).then(res => {
+      if(res.code === 200 && res.result) {
+        this.userEvaluate = res.result
+      }
+    })
+  }
 }
-
+if (typeof window !== 'undefined') {
+  window.kyyUtils = new kyyUtils();
+}
 export default new kyyUtils();
