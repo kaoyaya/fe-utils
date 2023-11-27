@@ -1,29 +1,43 @@
 import {userEvaluateSrv} from 'kyy-services'
+
 class kyyUtils {
   constructor() {
     this.userEvaluate = ""
   }
+
   isMobile() {
     return /Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent);
   }
-  get CPA_SUBJECT_IDS () {
+
+  get CPA_SUBJECT_IDS() {
     return [
       9194, 9196, 9197, 9198, 9199, 9200, 9209, 9210, 9211, 9212, 9213, 9214, 9225,
       9226, 9227, 9228, 9229, 9230, 7653, 9249, 9248, 9247, 9246, 9245, 9244,
     ]
   }
+
   get hasEvaluateEntry() {
-    return this.userEvaluate.knowledgeList && this.userEvaluate.knowledgeList.length
+    return !!(this.userEvaluate && this.userEvaluate.list && this.userEvaluate.list.length)
   }
+
   get isEvaluate() {
     return this.userEvaluate.isEvaluate === 2
   }
+
+  get formatUserEvaluate() {
+    if (this.hasEvaluateEntry) {
+      return this.getDefaultUserEvaluate()
+    }
+  }
+
   get ZHONGJI_SUBJECTS_IDS() {
     return [9187, 9188, 9189, 9206, 9207, 9208, 9233, 9232, 9241, 9242, 9243]
   }
+
   get TAX_SUBJECTS_IDS() {
     return [9187, 9188, 9189, 9206, 9207, 9208, 9233, 9232, 9241, 9242, 9243]
   }
+
   browserInfo(type) {
     const userAgent = navigator.userAgent.toLowerCase();
     switch (type) {
@@ -193,18 +207,57 @@ class kyyUtils {
       result = '刚刚';
     return result;
   }
-  getUserEvaluate({resourceId,resourceType}) {
-    userEvaluateSrv.getEvaluateContent({
+
+  getUserEvaluate({resourceId, resourceType}) {
+    return userEvaluateSrv.getKnowledgeListByLessonId({
       resourceId,
       resourceType
     }).then(res => {
-      if(res.code === 200 && res.result) {
-        this.userEvaluate = res.result
+      if (res.code === 200 && res.result) {
+        this.userEvaluate = {...res.result,resourceId,
+          resourceType}
+      }
+      return res
+    })
+  }
+  getEvaluateContent() {
+    const {resourceId,resourceType,teacherName} = this.userEvaluate
+    return new Promise((resolve, reject) => {
+      if(this.isEvaluate) {
+        // 已评价过
+       return userEvaluateSrv.getEvaluateContent({resourceId, type: resourceType}).then(res=>{
+         if(res.code === 200 && res.result) {
+           resolve({
+             ...res.result,
+             teacherName
+           })
+         }
+        })
+      } else {
+        resolve(this.formatUserEvaluate)
       }
     })
   }
+  getDefaultUserEvaluate() {
+    const {resourceType, resourceId, teacherId, isEvaluate,teacherName} = this.userEvaluate
+    const knowledgeList = this.userEvaluate.list.map(v => {
+      v.gotStatus = 0
+      return v
+    })
+    return {
+      star: 0,
+      isEvaluate,
+      teacherName,
+      type: resourceType,
+      resourceId,
+      teacherUserId: teacherId,
+      commentTeacher: "",
+      knowledgeList
+    }
+  }
 }
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   window.kyyUtils = new kyyUtils();
 }
+
 export default new kyyUtils();
