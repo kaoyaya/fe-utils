@@ -17,7 +17,7 @@ class kyyUtils {
   }
 
   get hasEvaluateEntry() {
-    return !!(this.userEvaluate && this.userEvaluate.list && this.userEvaluate.list.length && this.userEvaluate.teacherId)
+    return !!(this.userEvaluate && this.userEvaluate.list && this.userEvaluate.list.length)
   }
 
   get isEvaluate() {
@@ -254,7 +254,7 @@ class kyyUtils {
       teacherName,
       type: resourceType,
       resourceId,
-      teacherUserId: teacherId,
+      teacherId,
       commentTeacher: "",
       knowledgeList
     }

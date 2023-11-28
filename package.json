@@ -1,6 +1,6 @@
 {
   "name": "@kaoyaya/fe-utils",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "description": "前端通用工具函数",
   "main": "dist/index.js",
   "scripts": {
@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/kaoyaya/fe-utils#readme",
   "dependencies": {
-    "kyy-services": "^1.0.5"
+    "kyy-services": "^1.0.7"
   },
   "peerDependencies": {
     "axios": "^0.17.0",
