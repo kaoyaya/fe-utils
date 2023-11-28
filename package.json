@@ -1,6 +1,6 @@
 {
   "name": "@kaoyaya/fe-utils",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "description": "前端通用工具函数",
   "main": "dist/index.js",
   "scripts": {

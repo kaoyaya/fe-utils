@@ -221,7 +221,7 @@ class kyyUtils {
     })
   }
   getEvaluateContent() {
-    const {resourceId,resourceType,teacherName} = this.userEvaluate
+    const {resourceId,resourceType,teacherName,isEvaluate} = this.userEvaluate
     return new Promise((resolve, reject) => {
       if(this.isEvaluate) {
         // 已评价过
@@ -229,7 +229,8 @@ class kyyUtils {
          if(res.code === 200 && res.result) {
            resolve({
              ...res.result,
-             teacherName
+             teacherName,
+             isEvaluate
            })
          }
         })
