@@ -220,6 +220,9 @@ class kyyUtils {
       return res
     })
   }
+  handleEvaluate(status) {
+    this.userEvaluate.isEvaluate = status || 2
+  }
   getEvaluateContent() {
     const {resourceId,resourceType,teacherName,isEvaluate} = this.userEvaluate
     return new Promise((resolve, reject) => {
