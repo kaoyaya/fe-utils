@@ -243,7 +243,7 @@ class kyyUtils {
     })
   }
   getDefaultUserEvaluate() {
-    const {resourceType, resourceId, teacherId, isEvaluate,teacherName} = this.userEvaluate
+    const {resourceType, resourceId, teacherAvatar, teacherId, isEvaluate,teacherName} = this.userEvaluate
     const knowledgeList = this.userEvaluate.list.map(v => {
       v.gotStatus = 0
       return v
@@ -255,6 +255,7 @@ class kyyUtils {
       type: resourceType,
       resourceId,
       teacherId,
+      teacherAvatar,
       commentTeacher: "",
       knowledgeList
     }
