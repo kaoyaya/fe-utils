@@ -17,7 +17,7 @@ class kyyUtils {
   }
 
   get hasEvaluateEntry() {
-    return !!(this.userEvaluate && this.userEvaluate.list && this.userEvaluate.list.length)
+    return !!(this.userEvaluate && this.userEvaluate.list && this.userEvaluate.list.length && this.userEvaluate.teacherId)
   }
 
   get isEvaluate() {
