@@ -208,14 +208,14 @@ class kyyUtils {
     return result;
   }
 
-  getUserEvaluate({resourceId, resourceType}) {
+  getUserEvaluate({resourceId, resourceType, conditionId = 0}) {
     return userEvaluateSrv.getKnowledgeListByLessonId({
       resourceId,
       resourceType
     }).then(res => {
       if (res.code === 200 && res.result) {
         this.userEvaluate = {...res.result,resourceId,
-          resourceType}
+          resourceType, conditionId}
       }
       return res
     })
@@ -224,7 +224,7 @@ class kyyUtils {
     this.userEvaluate.isEvaluate = status || 2
   }
   getEvaluateContent() {
-    const {resourceId,resourceType,teacherName,isEvaluate,teacherAvatar} = this.userEvaluate
+    const {resourceId,resourceType,teacherName,isEvaluate,teacherAvatar,conditionId} = this.userEvaluate
     return new Promise((resolve, reject) => {
       if(this.isEvaluate) {
         // 已评价过
@@ -234,7 +234,8 @@ class kyyUtils {
              ...res.result,
              teacherName,
              teacherAvatar,
-             isEvaluate
+             isEvaluate,
+             conditionId
            })
          }
         })
@@ -244,7 +245,7 @@ class kyyUtils {
     })
   }
   getDefaultUserEvaluate() {
-    const {resourceType, resourceId, teacherAvatar, teacherId, isEvaluate,teacherName} = this.userEvaluate
+    const {resourceType, resourceId, teacherAvatar, teacherId, isEvaluate,teacherName,conditionId} = this.userEvaluate
     const knowledgeList = this.userEvaluate.list.map(v => {
       v.gotStatus = 0
       return v
@@ -258,7 +259,8 @@ class kyyUtils {
       teacherId,
       teacherAvatar,
       commentTeacher: "",
-      knowledgeList
+      knowledgeList,
+      conditionId
     }
   }
 }
